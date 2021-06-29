@@ -1,4 +1,5 @@
 #Ejercicios para clase 4
+#Realizados en conjunto. Alumnas: Florencia Kihara y Victoria Marco
 
 #Probando diferentes formas de importar datos
 
