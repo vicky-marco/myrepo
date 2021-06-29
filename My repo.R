@@ -35,7 +35,7 @@ delitos_2020B <- select(delitos_2020B, -"uso_armas")
 delitos_2020B <- delitos_2020B %>% 
   separate(fecha, into=c("fecha_día", "fecha_mes", "fecha_año"), sep= "/")
 
-#Para poder tener en una misma columna la info de la comuna y el barrio donde ocurrió el delito, generaré una nueva columna
+#Para poder tener en una misma columna la info de la comuna y el barrio donde ocurrió el delito, generaremos una nueva columna
 delitos_2020B <- delitos_2020B %>% 
   mutate(comuna_barrio=paste(comuna, barrio, sep = "_"))
 
