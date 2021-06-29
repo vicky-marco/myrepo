@@ -22,12 +22,36 @@ str(delitos_2020B)
 library(tidyverse)
 library(tidyr)
 
-delitos_2020B %>% 
-  pivot_wider(names_from = "comuna",
-              values_from = "victimas")
+delitos_2020B$uso_armas
+str(delitos_2020B$uso_armas)
+class(delitos_2020B$uso_armas)  
+summary(delitos_2020B$uso_armas)
 
-  
-  
-  
-  
-  
+#Como la columna "uso de armas" no tiene información, la eliminaremos. 
+delitos_2020B <- select(delitos_2020B, -"uso_armas")
+
+#Para separar la fecha, es decir, poder conocer el número del día, el mes y el año:
+delitos_2020B <- delitos_2020B %>% 
+  separate(fecha, into=c("fecha_día", "fecha_mes", "fecha_año"), sep= "/")
+
+#Para poder tener en una misma columna la info de la comuna y el barrio donde ocurrió el delito, generaré una nueva columna
+delitos_2020B <- delitos_2020B %>% 
+  mutate(comuna_barrio=paste(comuna, barrio, sep = "_"))
+
+#Para ordenar los registros por franja de horario en el que ocurrieron:
+delitos_2020B <- delitos_2020B %>% 
+  arrange(franja)
+
+#Para agrupar los datos y obtener medidas de resumen
+delitos_2020_cant <- delitos_2020B %>% 
+  group_by(tipo, subtipo) %>% 
+  summarise(cantidad=n())
+#La mayor cantidad de delitos son robos con violencia (30.068 obs)
+
+delitos_2020_cantbarr <- delitos_2020B %>% 
+  group_by(barrio, tipo="Robo (con violencia)") %>% 
+  summarise(cantidad=n())
+#A su vez, la mayor cantidad de robos con violencia ocurrieron en el barrio de Balvanera (4.502)
+
+            
+
