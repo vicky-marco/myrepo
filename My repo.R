@@ -3,13 +3,13 @@
 
 #Probando diferentes formas de importar datos
 
-delitos_2020 <-read.csv(file ="delitos_badata_2020.csv")
+delitos_2020 <-read.csv(file ="https://raw.githubusercontent.com/vicky-marco/myrepo/master/delitos_2020.csv")
 
 library(readr)
-delitos_2020B <- read_csv(file = "delitos_badata_2020.csv")
+delitos_2020B <- read_csv(file = "https://raw.githubusercontent.com/vicky-marco/myrepo/master/delitos_2020.csv")
 
 library(vroom)
-delitos_2020C <- vroom("delitos_badata_2020.csv", delim = ",")
+delitos_2020C <- vroom("https://raw.githubusercontent.com/vicky-marco/myrepo/master/delitos_2020.csv", delim = ",")
 
 #Conociendo el dataset
 as_tibble(delitos_2020B)
@@ -54,5 +54,5 @@ delitos_2020_cantbarr <- delitos_2020B %>%
   summarise(cantidad=n())
 #A su vez, la mayor cantidad de robos con violencia ocurrieron en el barrio de Balvanera (4.502)
 
-            
+      
 
